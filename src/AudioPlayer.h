@@ -5,6 +5,6 @@
 @property (nonatomic, readonly) NSTimeInterval deviceCurrentTime;
 @property (nonatomic, readonly) NSInteger queueLength;
 
-- (void)playAudioNamed:(NSString *)name atTime:(NSTimeInterval)time;
+- (void)playAudioAtFilePath:(NSString *)filePath atTime:(NSTimeInterval)time;
 
 @end

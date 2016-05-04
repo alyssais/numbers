@@ -1,6 +1,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "AudioPlayer.h"
 
+static NSString *const KNOWN_FILE_PATH = @"/System/Library/Sounds/Sosumi.aiff";
+
 @interface AudioPlayer () <AVAudioPlayerDelegate>
 
 @property (nonatomic, readonly) NSMutableDictionary *dataCache;
@@ -20,49 +22,46 @@
     return self;
 }
 
-- (NSString *)filePathForAudioNamed:(NSString *)name
+- (NSData *)dataForAudioAtFilePath:(NSString *)path
 {
-    return [NSString stringWithFormat:@"/Users/alyssais/Desktop/Numbers/sounds/%@.wav", name];
-}
-
-- (NSData *)dataForAudioNamed:(NSString *)name
-{
-    return self.dataCache[name] ?: ^{
-        NSString *path = [self filePathForAudioNamed:name];
+    return self.dataCache[path] ?: ^{
         NSData *data = [NSData dataWithContentsOfFile:path];
-        self.dataCache[name] = data;
+        self.dataCache[path] = data;
         return data;
     }();
 }
 
-- (AVAudioPlayer *)makePlayerForAudioNamed:(NSString *)name
+- (AVAudioPlayer *)makePlayerForAudioAtFilePath:(NSString *)path
 {
-    NSData *data = [self dataForAudioNamed:name];
-    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData:data error:nil];
+    NSData *data = [self dataForAudioAtFilePath:path];
+    NSError *error = nil;
+    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData:data error:&error];
+    if (player == nil) {
+        NSLog(@"%@", error);
+    }
     player.delegate = self;
-    [player prepareToPlay];
     return player;
 }
 
-- (NSMutableSet *)availablePlayersForAudioNamed:(NSString *)name
+- (NSMutableSet *)availablePlayersForAudioAtFilePath:(NSString *)path
 {
-    return self.availablePlayers[[self dataForAudioNamed:name]];
+    return self.availablePlayers[[self dataForAudioAtFilePath:path]];
 }
 
-- (AVAudioPlayer *)checkOutAvailablePlayerForAudioNamed:(NSString *)name
+- (AVAudioPlayer *)checkOutAvailablePlayerForAudioAtFilePath:(NSString *)path
 {
-    NSMutableSet *availablePlayers = [self availablePlayersForAudioNamed:name];
+    NSMutableSet *availablePlayers = [self availablePlayersForAudioAtFilePath:path];
     AVAudioPlayer *player = [availablePlayers anyObject]
-        ?: [self makePlayerForAudioNamed:name];
+        ?: [self makePlayerForAudioAtFilePath:path];
     [self.busyPlayers addObject:player];
     [availablePlayers removeObject:player];
     return player;
 }
 
-- (void)playAudioNamed:(NSString *)name atTime:(NSTimeInterval)time
+- (void)playAudioAtFilePath:(NSString *)path atTime:(NSTimeInterval)time
 {
-    if (name == nil) return;
-    AVAudioPlayer *player = [self checkOutAvailablePlayerForAudioNamed:name];
+    AVAudioPlayer *player = [self checkOutAvailablePlayerForAudioAtFilePath:path];
+    [player prepareToPlay];
     [player playAtTime:time];
 }
 
@@ -91,8 +90,7 @@
         }
     }
 
-    AVAudioPlayer *player = [self makePlayerForAudioNamed:@"sine0100"];
-    [self playerBecameAvailable:player];
+    AVAudioPlayer *player = [self makePlayerForAudioAtFilePath:KNOWN_FILE_PATH];
     return player;
 }
 

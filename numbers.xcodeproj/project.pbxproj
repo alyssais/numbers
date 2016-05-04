@@ -186,8 +186,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>src</string>
 			<key>path</key>
 			<string>src</string>
 			<key>sourceTree</key>
@@ -357,6 +355,8 @@
 			</array>
 			<key>defaultConfigurationIsVisible</key>
 			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
@@ -405,10 +405,14 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
+			<key>lineEnding</key>
+			<string>0</string>
 			<key>path</key>
 			<string>AudioPlayer.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.objc</string>
 		</dict>
 		<key>A7CA3BF11CDA2E9900C87E49</key>
 		<dict>
@@ -444,10 +448,14 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
+			<key>lineEnding</key>
+			<string>0</string>
 			<key>path</key>
 			<string>NumbersStation.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.objc</string>
 		</dict>
 		<key>A7CA3BF41CDA2E9900C87E49</key>
 		<dict>

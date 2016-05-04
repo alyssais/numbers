@@ -1,0 +1,38 @@
+{
+  "message": "hello world",
+  "tone": [
+    "longbeep",
+    null,
+    "beep"
+  ],
+  "sounds": {
+    "1": "build/sounds/1.wav",
+    "2": "build/sounds/2.wav",
+    "3": "build/sounds/3.wav",
+    "4": "build/sounds/4.wav",
+    "5": "build/sounds/5.wav",
+    "6": "build/sounds/6.wav",
+    "7": "build/sounds/7.wav",
+    "8": "build/sounds/8.wav",
+    "9": "build/sounds/9.wav",
+    "10": "build/sounds/10.wav",
+    "11": "build/sounds/11.wav",
+    "12": "build/sounds/12.wav",
+    "13": "build/sounds/13.wav",
+    "14": "build/sounds/14.wav",
+    "15": "build/sounds/15.wav",
+    "16": "build/sounds/16.wav",
+    "17": "build/sounds/17.wav",
+    "18": "build/sounds/18.wav",
+    "19": "build/sounds/19.wav",
+    "20": "build/sounds/20.wav",
+    "21": "build/sounds/21.wav",
+    "22": "build/sounds/22.wav",
+    "23": "build/sounds/23.wav",
+    "24": "build/sounds/24.wav",
+    "25": "build/sounds/25.wav",
+    "26": "build/sounds/26.wav",
+    "beep": "build/sounds/beep.wav",
+    "longbeep": "build/sounds/longbeep.wav"
+  }
+}

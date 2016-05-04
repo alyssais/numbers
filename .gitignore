@@ -18,3 +18,4 @@ xcuserdata/
 Carthage/Build
 fastlane/report.xml
 fastlane/screenshots
+config.json
