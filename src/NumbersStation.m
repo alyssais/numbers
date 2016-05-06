@@ -5,7 +5,8 @@
 
 @property (nonatomic, readonly) AudioPlayer *player;
 @property (nonatomic, readonly) NSDictionary *configuration;
-@property (nonatomic) NSTimeInterval start;
+@property (nonatomic) NSTimeInterval startTime;
+@property (nonatomic) NSTimeInterval deviceStartTime;
 @property (nonatomic) int t;
 @property (nonatomic) int messageIndex;
 
@@ -75,17 +76,14 @@
 
 - (NSString *)nameForAudioAtTime:(NSTimeInterval)time
 {
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
+    NSTimeInterval realTime = time - self.deviceStartTime + self.startTime;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:realTime];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSInteger minutes = [calendar component:NSCalendarUnitMinute fromDate:date];
     NSInteger seconds = [calendar component:NSCalendarUnitSecond fromDate:date];
 
-    if (minutes == 59) {
-        switch (seconds) {
-            case 0: return @"longbeep";
-            case 55 ... 59: return @"beep";
-        }
-    }
+    if (minutes == 59 && seconds >= 55) return @"beep";
+    if (minutes == 0 && seconds == 0) return @"longbeep";
     
     if (self.message == nil && self.tone == nil) return nil;
 
@@ -115,7 +113,7 @@
 - (void)tick
 {
     if (self.player.queueLength < 10) {
-        NSTimeInterval time = self.start + ++self.t;
+        NSTimeInterval time = self.deviceStartTime + ++self.t;
         NSString *name = [self nameForAudioAtTime:time];
         if (name) {
             NSString *path = [self resolvePath:self.sounds[name]];
@@ -148,7 +146,8 @@
 - (void)run
 {
     [self checkConfiguration];
-    self.start = [self.player deviceCurrentTime];
+    self.startTime = [[NSDate date] timeIntervalSince1970];
+    self.deviceStartTime = [self.player deviceCurrentTime];
     [self tick];
 }
 
