@@ -26,7 +26,7 @@ See the [Releases]() page on GitHub to find a ready-to-use version.
 
 ### Compiling (short version)
 
-1. Make sure [sox]() is installed. If you use Homebrew, you can install it with `brew install sox`.
+1. Make sure [sox](http://sox.sourceforge.net) is installed. If you use Homebrew, you can install it with `brew install sox`.
 2. Change into a directory containing the Numbers files.
 3. Run `make`.
 
@@ -46,7 +46,7 @@ make build/sounds/numbers VOICE=Samantha
 
 #### Generating the flat tones
 
-Flat 1 KHz tones are used by default for the chime between messages and the Greenwich Time Signal. [sox]() must be installed to use these.
+Flat 1 KHz tones are used by default for the chime between messages and the Greenwich Time Signal. [sox](http://sox.sourceforge.net) must be installed to use these.
 
 Generate a 0.1 second 1 KHz tone:
 
