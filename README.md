@@ -22,7 +22,7 @@ First, get a copy of the repository, either by `git clone` or by downloading fro
 
 ### Download a compiled version
 
-See the [Releases]() page on GitHub to find a ready-to-use version.
+See the [Releases](https://github.com/alyssais/numbers/releases) page on GitHub to find a ready-to-use version.
 
 ### Compiling (short version)
 
