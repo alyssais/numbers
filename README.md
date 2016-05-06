@@ -4,7 +4,7 @@ An automatic [numbers station](https://en.wikipedia.org/wiki/Numbers_station) fo
 
 ## What's a Numbers Station?
 
-There's a fantastic [episode]() of [99% Invisible]() about numbers stations — it actually inspired me to make this.
+There's a fantastic [episode](http://99percentinvisible.org/episode/numbers-stations/) of [99% Invisible](http://99percentinvisible.org/) about numbers stations — it actually inspired me to make this.
 
 If you don't want to listen for a 20 minute radio programme (though I highly recommend you do), there's always an [article](https://en.wikipedia.org/wiki/Numbers_station) on [Wikipedia](https://wikipedia.org).
 
